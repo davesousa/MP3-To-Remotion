@@ -1,6 +1,6 @@
 ---
 name: audio-to-motion-video
-description: Use when a user supplies audio and wants a polished Remotion lyric video or visualizer. Ask for the video type, pitch exactly three concepts for approval, check available image-generation tools, offer automatic or manual image creation, then build, verify, and export. Lyric mode exports matching versions with and without lyrics.
+description: Use when a user supplies audio and wants a polished Remotion lyric video or visualizer. Ask for the video type, detect and transcribe lyrics in both modes to inform concept design, pitch exactly three concepts for approval, check available image-generation tools, offer automatic or manual image creation, then build, verify, and export. Lyric mode exports matching versions with and without lyrics.
 ---
 
 # Audio to Motion Video
@@ -18,17 +18,17 @@ Before presenting concepts or beginning lyric transcription, ask:
 Wait for the user's selection. If the conversation already clearly specifies the video type, honor it without asking again; still give the lyric-timing reminder before lyric production when applicable.
 
 - **Lyric video:** Analyze and verify the sung words and their timing. Plan two final exports using the same audio, duration, visual design, motion, and render settings: one with the lyric layer enabled and one with it disabled. The version without lyrics must remain visually complete, with no empty lyric placeholders. The user does not need to request the second export separately.
-- **Visualizer:** Build audio-responsive visuals without displaying lyrics. Do not require lyric transcription or alignment. Export one final video without lyrics.
+- **Visualizer:** Detect, transcribe, and verify the lyrics just as in lyric mode. Use their meaning, imagery, narrative, and timed vocal events to design audio-responsive visuals, but display no lyrics. Export one final video without lyrics.
 
-If lyric mode is selected but the recording has no sung lyrics, explain the issue and resolve the video type with the user before pitching concepts. Do not invent lyrics.
+**Both modes share the same discovery and concept-design process:** automatically detect and transcribe lyrics, verify their wording and timing, and use them to inform concepts. The video-type choice controls the visual output and export set only; never skip lyric analysis because the user selected a visualizer. If the recording has no sung lyrics, identify it as instrumental and base concepts on the sound and structure. If lyric mode was selected, resolve the video type with the user before pitching concepts. Do not invent lyrics.
 
 ## 2. Input and discovery
 
 1. Identify the actual audio file, its location, duration, channels, sample rate, and safe working copy. Accept common audio formats, including MP3. If the file is missing, ask for it; do not invent its sound or lyrics.
 2. Ask only for missing choices that materially affect the work, such as intended aspect ratio or full track versus excerpt. When unspecified, use a 16:9 composition at 1920×1080, 30 fps and the full supplied track. State these assumptions in the pitch.
 3. Listen to the audio, inspect the waveform and musical structure, and note key transitions, vocal entries, repeated hooks, quiet spaces, accents, and ending. Use available audio tools. If a needed binary or package is absent, install it only when permitted and practical; otherwise explain the exact blocker.
-4. For lyric mode only, extract lyrics from this recording with timestamps. Prefer word-level or phrase-level transcription with an audio-capable tool or speech recognizer. Preserve uncertainty flags; verify the words by listening at normal and slowed speed. Do not substitute internet lyrics for what is actually sung. User-supplied lyrics can help establish the words, but their timing must still be checked against this recording. Keep the transcript internal until needed for the pitch; do not publish an entire copyrighted lyric transcription in chat unless the user supplied the lyrics or asks for it.
-5. Keep a beat/section map in the project. For lyric mode, also keep a timing document with line/word intervals and confidence or uncertainty notes. Make timing monotonic and bounded by the real recording length.
+4. In both lyric and visualizer modes, automatically detect and extract lyrics from this recording with timestamps before pitching concepts. Analyze the meaning, themes, narrative, emotional arc, and imagery to inform scenes and motion in either output mode. Prefer word-level or phrase-level transcription with an audio-capable tool or speech recognizer. Preserve uncertainty flags; verify the words by listening at normal and slowed speed. Do not substitute internet lyrics for what is actually sung. User-supplied lyrics can help establish the words, but their timing must still be checked against this recording. Keep the transcript internal until needed for the pitch; do not publish an entire copyrighted lyric transcription in chat unless the user supplied the lyrics or asks for it.
+5. In both modes, keep a beat/section map and a lyric timing document in the project with line/word intervals and confidence or uncertainty notes. Use these to connect concepts and visual moments to the verified words and vocal events. Make timing monotonic and bounded by the real recording length.
 
 ## 3. Three-concept approval gate
 
@@ -38,14 +38,15 @@ After the video type is settled and the audio is analyzed, present **exactly thr
 - Art direction: palette, type style where relevant, image or shape language, space, and texture.
 - Motion language: camera, transitions, rhythm, and how movement responds to the audio.
 - For lyric mode, a lyric treatment and how the matching version without lyrics will stand on its own. Use at most a short lyric fragment as an example when useful.
-- For visualizer mode, the audio-reactive treatment and focal points, without a lyric layer.
+- For both modes, explain how the verified lyric themes, imagery, narrative, or emotional arc inform the concept and its visual moments. For instrumental recordings, use the sound and musical structure instead.
+- For visualizer mode, the audio-reactive treatment and focal points, without displaying lyrics; still use the lyric analysis to guide concept design.
 - One signature moment tied to a specific audible event or timestamp.
 - A practical production note describing required images, other assets, and techniques. Identify concepts that need no generated images.
 - Expected exports: two matching videos in lyric mode, or one video in visualizer mode.
 
 Give a concise recommendation based on the recording and selected video type. Avoid three palette variants of the same template. Make the ideas achievable in Remotion and worthy of a professional motion-design reel: strong hierarchy, memorable visual system, choreographed timing, coherent transitions, and restraint between high-impact moments.
 
-**Stop here and seek the user's explicit choice of concept 1, 2, or 3.** A refinement request counts as approval only when it clearly selects a concept. Do not begin the final composition, full render, or image generation before approval. Audio analysis, lyric work in lyric mode, beat mapping, and lightweight non-generated concept frames or short tests needed to make pitches reviewable are allowed. If a concept is already approved in the conversation, continue without asking again.
+**Stop here and seek the user's explicit choice of concept 1, 2, or 3.** A refinement request counts as approval only when it clearly selects a concept. Do not begin the final composition, full render, or image generation before approval. Audio analysis, lyric detection and transcription in both modes, beat mapping, and lightweight non-generated concept frames or short tests needed to make pitches reviewable are allowed. If a concept is already approved in the conversation, continue without asking again.
 
 ## 4. Check image tools and choose the asset workflow
 
@@ -97,7 +98,7 @@ If an image is missing or unsuitable and cannot be corrected safely, explain the
 
 ### Timing artifacts
 
-Store a machine-readable timing file with audio duration, detected sections, and beat accents. In lyric mode, include cues with `start`, `end`, `text`, and verification status. Use seconds for source timing and convert to integer frames at the render boundary. Word-level timing suits kinetic typography; carefully checked phrase-level timing is acceptable. Check overlaps, negative intervals, missing gaps, and cues beyond the track. Resolve or omit uncertain words; never fabricate them. If a necessary lyric or timing ambiguity cannot be resolved, request targeted input instead of claiming precise alignment.
+Store a machine-readable timing file with audio duration, detected sections, and beat accents. In both modes, include lyric cues when vocals are present, with `start`, `end`, `text`, and verification status. Use seconds for source timing and convert to integer frames at the render boundary. Word-level timing suits kinetic typography; carefully checked phrase-level timing is acceptable. Check overlaps, negative intervals, missing gaps, and cues beyond the track. Resolve or omit uncertain words; never fabricate them. If a necessary lyric or timing ambiguity cannot be resolved, request targeted input instead of claiming precise alignment.
 
 ### Concept differentiation
 
@@ -105,7 +106,7 @@ Make the three proposals vary along several axes: physical versus graphic materi
 
 ### Design review
 
-The visuals must clearly respond to this track's structure and accents, and to its verified lyrics in lyric mode. At thumbnail size, the focal point and any lyric hierarchy must read. At full size, shapes, masks, and type should have clean edges. Text contrast and dwell time must support reading; avoid long lyric paragraphs. Give the eye a place to rest before high-energy changes. Check flashes and rapid contrast changes, especially around beat impacts. Preserve audio without accidental gain changes or added distortion. Build an opening hook, evolving middle, strong payoff, and intentional final frame. The result should hold up without sound while feeling synchronized when audio plays.
+The visuals must clearly respond to this track's structure and accents, and to its verified lyric themes, imagery, narrative, and emotional arc in both modes when vocals are present. Lyric display is enabled only for the lyric export. At thumbnail size, the focal point and any lyric hierarchy must read. At full size, shapes, masks, and type should have clean edges. Text contrast and dwell time must support reading; avoid long lyric paragraphs. Give the eye a place to rest before high-energy changes. Check flashes and rapid contrast changes, especially around beat impacts. Preserve audio without accidental gain changes or added distortion. Build an opening hook, evolving middle, strong payoff, and intentional final frame. The result should hold up without sound while feeling synchronized when audio plays.
 
 ### Reproducible handoff
 

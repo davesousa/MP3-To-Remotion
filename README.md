@@ -21,7 +21,7 @@ You can also install the file as an agent skill if your agent supports Markdown 
 ## What the workflow does
 
 - **Video type first:** Asks whether you want a lyric video or a visualizer before pitching concepts.
-- **Automatic lyric detection:** In lyric mode, detects and transcribes the sung lyrics directly from your audio, then checks the words and aligns them with the recording. You do not need to supply a lyric sheet to get started.
+- **Automatic lyric detection in both modes:** Detects and transcribes the sung lyrics directly from your audio, then checks the words and their timing. Uses the lyrics' meaning, imagery, narrative, and emotional arc to design concepts for both lyric videos and visualizers. You do not need to supply a lyric sheet to get started.
 - **Concept approval:** Offers exactly three distinct concepts tailored to your recording and selected video type, then waits for your choice.
 - **Image-tool detection:** Checks the tools actually available in your agent before offering automatic image generation.
 - **Automatic images:** Generates and validates required images, then continues through production and export.
@@ -43,7 +43,11 @@ Unless you specify otherwise, the defaults are the full supplied track, 1920 × 
 
 ## Lyric timing
 
-In lyric mode, the agent automatically detects and transcribes the lyrics from the supplied recording using available audio transcription tools. You do not need to enter the lyrics yourself. If the recording contains no sung lyrics, the agent flags that before pitching concepts. Visualizer mode does not require lyric transcription.
+For both lyric videos and visualizers, the agent automatically detects and transcribes the lyrics from the supplied recording using available audio transcription tools, then verifies their wording and timing. The lyrics inform concept design in both modes, even when no words appear on screen. You do not need to enter the lyrics yourself.
+
+The video-type choice controls only the visual output and export set: lyric mode includes an on-screen lyric version plus a matching version without lyrics; visualizer mode displays no lyrics. Both use the same lyric analysis to guide their concepts.
+
+If the recording contains no sung lyrics, the agent identifies it as instrumental and builds concepts from the sound and musical structure. If lyric mode was selected, it resolves the video type with you before pitching concepts.
 
 AI has difficulty aligning words precisely with sung audio. Lyric videos require multiple timing retries and review passes; an initial transcription or alignment should not be treated as final. Providing accurate lyrics can help with the words, but their timing still needs to be verified against your recording.
 
